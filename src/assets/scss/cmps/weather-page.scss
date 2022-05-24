@@ -1,0 +1,119 @@
+@mixin aspect-ratio($width, $height) {
+  position: relative;
+  overflow: hidden;
+  &::before {
+    display: block;
+    content: '';
+    width: 100%;
+    padding-top: ($height / $width) * 100%;
+  }
+  > * {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+
+  > img {
+    height: 100%;
+    object-fit: cover;
+  }
+}
+.favorite-name {
+  margin-top: 50px;
+}
+
+.forecast-info {
+  margin-left: 50px;
+}
+.favorite {
+  display: flex;
+}
+.city-name {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 10px;
+  margin-left: 20px;
+}
+.home-page {
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+}
+
+.weather-page {
+  gap: 10px;
+  grid-auto-flow: column;
+
+  .top-side {
+    gap: 20px;
+    align-items: center;
+    flex-direction: column;
+    display: flex;
+    margin-bottom: 30px;
+
+    .text-container {
+      background-color: lightgreen;
+      grid-template-columns: minmax(10px, 1fr) minmax(auto, 1400px) minmax(10px, 1fr);
+      display: grid;
+      width: 100%;
+      .ha {
+        background-color: rgb(25, 118, 210);
+        text-align: center;
+        grid-column: 2/3;
+      }
+    }
+  }
+
+  .weather-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(206px, 1fr));
+    gap: 3%;
+    margin-bottom: 30px;
+
+    .weather-card-container {
+      @include aspect-ratio(1, 3);
+      border-radius: 15px;
+
+      box-shadow: 2px 2px 19px 2px rgba(0, 0, 0, 0.64);
+    }
+    .weather-card {
+      padding: 35px 35px;
+
+      display: flex;
+      text-align: center;
+      flex-direction: column;
+      justify-content: space-around;
+      .img {
+        width: 100%;
+      }
+    }
+  }
+}
+
+.cards-container {
+  display: flex;
+  .card {
+    display: flex;
+    .card-name {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+}
+
+.footer-container {
+  background-color: rgb(25, 118, 210);
+  grid-template-columns: minmax(10px, 1fr) minmax(auto, 1400px) minmax(10px, 1fr);
+  display: grid;
+
+  .footer {
+    background-color: lightgreen;
+    grid-column: 2/3;
+  }
+}
